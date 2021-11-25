@@ -286,7 +286,7 @@ function colorizeCell(num) {
       color = 'black';
       break;
     default:
-      color = '#fafafa';
+      color = 'pink';
       break;
   }
 
