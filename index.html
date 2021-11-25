@@ -1,38 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/main.css">
-  <title>MineSweeper by Barak</title>
-</head>
-<body onload="init()">
-<h1>MineSweeper!</h1>
-<!-- <button class="lives"></button> -->
-<div class="container">
-<button class="smiley" onclick="init()">😃</button>
-<table id="table" >
-  
-  <tbody class="board">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/main.css" />
+    <title>MineSweeper by Barak</title>
+  </head>
+  <body onload="init()">
+    <header>
+      <h1>💣MineSweeper!💣</h1>
+    </header>
+    <div class="container">
+      <p>Restart here:</p>
+      <button class="smiley" onclick="init()">😃</button>
+      <table id="table">
+        <tbody class="board"></tbody>
+      </table>
+
+      <div class="time">Game Time:<span>0</span></div>
+      <button class="safe" onclick="safeClick()">SafeClick</button>
+      <h3>Choose Level:</h3>
+      <button class="levels easy" onclick="setLevel(4,2)">Easy</button>
+      <button class="levels medium" onclick="setLevel(8,12)">Medium</button>
+      <button class="levels hard" onclick="setLevel(12,30)">Hard</button>
+    </div>
+    <div class="modal"></div>
+
     
-  </tbody>
-</table>
 
-<div class="time">Game Time:<span>0</span></div>
-<h3>Choose Level:</h3>
-<button class="levels easy" onclick="setLevel(4,2)">Easy</button>
-<button class="levels medium" onclick="setLevel(8,12)">Medium</button>
-<button class="levels hard" onclick="setLevel(12,30)">Hard</button>
-</div>
-<div class="modal"></div>
-
-
-  <!-- <footer>
-    <p>©CoffeRight by Barak Lebowitz</p>
-  </footer> -->
-
-  <script src="js/myUtils.js"></script>
-  <script src="js/app.js"></script>
-</body>
+    <script src="js/myUtils.js"></script>
+    <script src="js/app.js"></script>
+  </body>
 </html>

@@ -7,7 +7,7 @@ var gLives = 3;
 var gSafeClick = 3
 const FLAG_IMG = '&#x1F6A9;';
 const MINE_IMG = '&#x1F4A3;';
-// const LIVE_IMG = '❤️'
+const LIVE_IMG = '❤️'
 const EMPTY = ''
 
 var gLevel = {
@@ -34,7 +34,7 @@ function setLevel(size, mines) {
 
   switch (size) {
     case 12: var elContainer = document.querySelector('.container')
-      elContainer.style.width = '600px'
+      elContainer.style.width = '550px'
       break;
     case 8: var elContainer = document.querySelector('.container')
       elContainer.style.width = '450px'
@@ -173,9 +173,16 @@ function cellMarked(cell, event, i, j) {
   if (checkVictory()) return endGame(true);
 }
 
+function placeLives() {
+  var elLives = document.querySelector('.lives')
+  var strHTML = ''
+  for (var i = 0; i < gLives; i++) {
+    strHTML += LIVE_IMG
+  }
+  elLives.innerHTML = strHTML
+}
 
-
-
+//START/END GAME FUNCS
 function restartGame() {
   resetTimer()
   gGame.isOn = true
@@ -186,6 +193,7 @@ function restartGame() {
   elSmile.innerText = '😃'
   closeModal()
   gClicks = 0
+  gLives = 3
 }
 
 function checkVictory() {
@@ -204,10 +212,10 @@ function endGame(isWin = false) {
 
       if (currCell.isMine) {
         var elCell = document.querySelector(`.cell-${i}-${j}`);
-        gLives--
+
         if (!isWin) {
-          elCell.innerHTML = MINE_IMG
           elCell.classList.remove('hidden');
+          elCell.innerHTML = MINE_IMG
           elSmile.innerText = '🤯'
           resetTimer()
           openModal('Sorry...You LOST')
@@ -216,8 +224,9 @@ function endGame(isWin = false) {
           elCell.innerHTML = FLAG_IMG
           elSmile.innerText = '😎'
           resetTimer()
-          openModal('You Won!')
+          openModal('🎊You Won!🎊')
         }
+
       }
     }
   }
@@ -225,6 +234,8 @@ function endGame(isWin = false) {
   gGame.isOn = false;
 }
 
+
+//MODAL
 function openModal(str) {
   var elModal = document.querySelector('.modal')
   elModal.style.display = 'block'
@@ -237,10 +248,7 @@ function closeModal() {
 }
 
 
-
-
-
-
+//RECURSION
 function expandShown(row, col) {
   for (var i = row - 1; i <= row + 1; i++) {
     if (i < 0 || i > gBoard.length - 1) continue;
@@ -252,8 +260,8 @@ function expandShown(row, col) {
 
       if (!gBoard[i][j].isMine && !gBoard[i][j].isShown) {
         var elCell = document.querySelector(`.cell-${i}-${j}`);
-
         elCell.classList.remove('hidden');
+
         elCell.style.color = colorizeCell(minesNegsCount);
         if (minesNegsCount > 0) elCell.innerHTML = minesNegsCount;
 
@@ -284,15 +292,15 @@ function colorizeCell(num) {
       color = 'black';
       break;
     default:
-      color = '#9a9a9a';
+      color = '#fafafa';
       break;
   }
 
   return color;
 }
 
-
-var gStartTime, gEndTime, gIntrevalTimer;
+//TIMER
+var gIntrevalTimer;
 var gSeconds = 0;
 function startTimer() {
   gIntrevalTimer = setInterval(function () {
@@ -309,13 +317,22 @@ function resetTimer() {
   elTime.innerText = gSeconds;
   clearInterval(gIntrevalTimer)
 }
-function safeClick(){
-  var rndi = getRandomInt(0,gBoard.length)
-  var rndj = getRandomInt(0,gBoard.length)
-  console.log('i,j:', i,j);
-  if(gBoard[rndi][rndj].isMine) safeClick()
-  else{
 
+//SAFE CLICK - NO MINE NO SHOWN
+function safeClick() {
+  if(!gGame.isOn) return
+  var rndi = getRandomInt(0, gBoard.length)
+  var rndj = getRandomInt(0, gBoard.length)
+  console.log('i,j:', rndi, rndj);
+  if (gBoard[rndi][rndj].isMine || gBoard[rndi][rndj].isShown) safeClick()
+  else {
+    var elCell = document.querySelector(`.cell-${rndi}-${rndj}`)
+    console.log('elCell:', elCell);
+    elCell.classList.remove('hidden');
+    setTimeout(()=>{
+      elCell.classList.add('hidden');
+    },700)
+    
   }
 }
 
