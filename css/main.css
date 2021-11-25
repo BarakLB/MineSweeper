@@ -7,7 +7,8 @@ h1 {
   color: #3db2ff;
 }
 h3,
-p {
+p, 
+.safe {
   color: white;
 }
 table {
@@ -99,10 +100,14 @@ button {
   background-color: royalblue;
 }
 
-.safe {
+.safebtn {
   margin-top: 15px;
   background-color: #986d8e;
   border-radius: 10px;
+}
+
+.safebtn:hover {
+  background-color: #b983ff;
 }
 
 .time {

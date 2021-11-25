@@ -17,9 +17,13 @@
       <table id="table">
         <tbody class="board"></tbody>
       </table>
+      
+      <div class="safe">
+        SafeClicks Left: <span></span>
+        <button class="safebtn" onclick="safeClick()">SafeClick</button>
+      </div>
+      <div class="time">Time:<span>0</span></div>
 
-      <div class="time">Game Time:<span>0</span></div>
-      <button class="safe" onclick="safeClick()">SafeClick</button>
       <h3>Choose Level:</h3>
       <button class="levels easy" onclick="setLevel(4,2)">Easy</button>
       <button class="levels medium" onclick="setLevel(8,12)">Medium</button>

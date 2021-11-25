@@ -7,7 +7,7 @@ const EMPTY = ''
 var gBoard;
 var gClicks = 0;
 var gLives = 3;
-var gSafeClick = 3
+var gSafeClick = 3;
 
 var gLevel = {
   SIZE: 4,
@@ -70,7 +70,7 @@ function renderBoard(board) {
   for (var i = 0; i < board.length; i++) {
     strHTML += '<tr>';
 
-    for (var j = 0; j < board[0].length; j++) {
+    for (var j = 0; j < board.length; j++) {
       var currCell = board[i][j];
       var className = 'cell-' + i + '-' + j;
 
@@ -179,11 +179,14 @@ function restartGame() {
   gGame.shownCount = 0
   gGame.markedCount = 0
   gGame.secsPassed = 0
-  var elSmile = document.querySelector('.smiley')
-  elSmile.innerText = '😃'
-  closeModal()
   gClicks = 0
   gLives = 3
+  gSafeClick = 3
+  var elSmile = document.querySelector('.smiley')
+  elSmile.innerText = '😃'
+  var elSpan = document.querySelector('.safe span')
+  elSpan.innerText = gSafeClick
+  closeModal()
 }
 
 function checkVictory() {
@@ -251,8 +254,8 @@ function expandShown(row, col) {
       if (!gBoard[i][j].isMine && !gBoard[i][j].isShown) {
         var elCell = document.querySelector(`.cell-${i}-${j}`);
         elCell.classList.remove('hidden');
-
         elCell.style.color = colorizeCell(minesNegsCount);
+
         if (minesNegsCount > 0) elCell.innerHTML = minesNegsCount;
 
         gBoard[i][j].isShown = true;
@@ -312,14 +315,18 @@ function resetTimer() {
 //SAFE CLICK - NO MINE NO SHOWN
 function safeClick() {
   if (!gGame.isOn) return
+  if (!gSafeClick) return
   var rndi = getRandomInt(0, gBoard.length)
   var rndj = getRandomInt(0, gBoard.length)
   console.log('i,j:', rndi, rndj);
   if (gBoard[rndi][rndj].isMine || gBoard[rndi][rndj].isShown) safeClick()
   else {
     var elCell = document.querySelector(`.cell-${rndi}-${rndj}`)
-    console.log('elCell:', elCell);
+    // console.log('elCell:', elCell);
     elCell.classList.remove('hidden');
+    var elSpan = document.querySelector('.safe span')
+    gSafeClick--
+    elSpan.innerText = gSafeClick
     setTimeout(() => {
       elCell.classList.add('hidden');
     }, 700)
