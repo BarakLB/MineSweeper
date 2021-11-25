@@ -5,24 +5,33 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/main.css">
-  <title>Document</title>
+  <title>MineSweeper by Barak</title>
 </head>
 <body onload="init()">
 <h1>MineSweeper!</h1>
+<!-- <button class="lives"></button> -->
+<div class="container">
+<button class="smiley" onclick="init()">😃</button>
+<table id="table" >
   
-<button onclick="init()">😃</button>
-<div class="time">Game Time:<span>0</span></div>
-<div class="modal"></div>
-<table id="table" cellpadding="10px">
+  <tbody class="board">
     
-    <tbody class="board">
-
-    </tbody>
+  </tbody>
 </table>
 
-  <button onclick="setLevel(4,2)">Easy</button>
-  <button onclick="setLevel(8,12)">Medium</button>
-  <button onclick="setLevel(12,30)">Hard</button>
+<div class="time">Game Time:<span>0</span></div>
+<h3>Choose Level:</h3>
+<button class="levels easy" onclick="setLevel(4,2)">Easy</button>
+<button class="levels medium" onclick="setLevel(8,12)">Medium</button>
+<button class="levels hard" onclick="setLevel(12,30)">Hard</button>
+</div>
+<div class="modal"></div>
+
+
+  <!-- <footer>
+    <p>©CoffeRight by Barak Lebowitz</p>
+  </footer> -->
+
   <script src="js/myUtils.js"></script>
   <script src="js/app.js"></script>
 </body>

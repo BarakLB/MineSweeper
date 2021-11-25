@@ -1,39 +1,114 @@
+html {
+  overflow-y: scroll; 
+}
 body{
   text-align: center;
-  background-color:#c1ff88;
-
+  background-color: #B983FF;
+  font-family: 'Permanent Marker', cursive;
+  
+  
 }
-
+h1, h3 {
+  color: white;
+}
 table{
+  position: relative;
   margin: auto;
-  background-color:darkgreen;
+  background-color:skyblue;
   margin-top: 10px;
   margin-bottom: 10px;
 }
-
+.container {
+  display: block;
+  background-color:#94B3FD ;
+  
+margin-left: auto;
+margin-right: auto;
+padding: 70px 20px;
+width: 300px;
+}
 
 .cell{
   text-align: center;
   font-size: 15px;
-  height: 20px;
-  width: 20px;
+  padding: 5px;
+  height: 25px;
+  width: 25px;
   font-family: 'Permanent Marker', cursive;
-  background-color: lightgreen;
+  background-color: #99FEFF;
   cursor: pointer;
+  transition: 1s;
+  
 }
 
 .cell:hover{
   border: 1px solid white;
+  background-color: #CAB8FF;
+  transform: scale(1.3);
 }
 
-.shown{
-  background-color: limegreen;
+.hidden{
+  background-color: #3DB2FF;
 }
 
 .modal {
-  height: 150px;
-  width: 250px;
-  background-color: magenta;
-  
+  width: 200px;
+  background-color: #94B3FD;
+  display: none;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  padding: 20px 0px;
+  text-align: center;
+}
+
+button {
+  cursor: pointer;
+}
+
+.levels {
+  color: white;
+  border:none;
+  padding: 7px;
+  border-radius: 10px;
+  margin-left: 10px;
+  /* margin-top: 15px; */
+  transition: 0.2s;
+}
+.easy{
+  background-color: lime;
+}
+
+.medium {
+  background-color: gold;
+}
+
+.hard {
+  background-color: tomato;
+}
+.levels:hover {
+  background-color: royalblue;
+}
+.smiley {
+  padding: 5px;
+  font-size: 25px;
+  background-color:#986D8E;
+  transition: 0.5s;
+  margin-bottom: 15px;
+}
+
+.smiley:hover {
+  background-color:royalblue;
+
+}
+
+.time {
+  margin-top: 15px;
+ color: white;
+}
+
+footer {
   position: absolute;
+  bottom: 0px;
 }
